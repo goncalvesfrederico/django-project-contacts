@@ -47,6 +47,7 @@ if __name__ == "__main__":
                 first_name = first_name,
                 last_name = last_name,
                 phone = phone,
+                email = email,
                 created_date = created_date,
                 description = description,
                 category = category,

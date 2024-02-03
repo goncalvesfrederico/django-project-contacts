@@ -17,9 +17,9 @@
     --bigger-font-size: 4rem;
     --big-font-size: 3.2rem;
     --medium-font-size: 2.4rem;
-    --small-font-size: 1.6rem;
-    --smaller-font-size: 1.4rem;
-    --smallest-font-size: 1.2rem;
+    --small-font-size: 1.0rem;
+    --smaller-font-size: 0.8rem;
+    --smallest-font-size: 0.6rem;
     --transition-fast: 300ms;
     --transition-medium: 600ms;
     --transition-slow: 1s;
