@@ -13,11 +13,18 @@ class ContactForm(forms.ModelForm):
         label="First Name",
         help_text="Input your first name",
     )
+    picture = forms.ImageField(
+        widget=forms.FileInput(
+            attrs={
+                "accept": "image/*",
+            }
+        )
+    )
 
     class Meta:
         model = Contact
         fields = (
-            "first_name", "last_name", "phone", "email", "description", "category",
+            "first_name", "last_name", "phone", "email", "description", "category", "picture"
         )
         
     def clean(self):

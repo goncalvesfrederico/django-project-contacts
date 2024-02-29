@@ -5,18 +5,24 @@
         <form action="{{ form_action }}" method="POST" enctype="multipart/form-data">
             {% csrf_token %}
             <div class="form-content">
-
                 {% for field in form %}
-                <div class="form-group">
-                    <label for="{{ field.id_for_label }}">{{ field.label }}</label>
-                    {{ field }}
-                    {{ field.errors }}
-                    
-                    {% comment %} Showing the help.text field {% endcomment %}
-                    {% if field.help_text %}
-                        <p class="help-text">{{ field.help_text }}</p>
+                    <div class="form-group">
+                        <label for="{{ field.id_for_label }}">{{ field.label }}</label>
+                        {{ field }}
+                        {{ field.errors }}
+                        
+                        {% comment %} Showing the help.text field {% endcomment %}
+                        {% if field.help_text %}
+                            <p class="help-text">{{ field.help_text }}</p>
+                        {% endif %}
+                    </div>
+                
+                    {% comment %} showing the uploaded picture if it exists {% endcomment %}
+                    {% if field.name == "picture" and field.value.url %}
+                        <div class="form-group">
+                            <img src="{{ field.value.url }}" alt="{{field.id_for_label}}">
+                        </div>
                     {% endif %}
-                </div>
                 {% endfor %}
             </div>
 
