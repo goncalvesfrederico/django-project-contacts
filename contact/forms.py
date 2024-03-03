@@ -2,6 +2,7 @@ from django import forms
 from contact.models import Contact
 from django.core.exceptions import ValidationError
 from django.contrib.auth.forms import UserCreationForm
+from django.contrib.auth.models import User
 
 class ContactForm(forms.ModelForm):
     first_name = forms.CharField(
@@ -39,4 +40,29 @@ class ContactForm(forms.ModelForm):
 
 
 class RegisterForm(UserCreationForm):
-    ...
+    first_name = forms.CharField(
+        min_length=3,
+        required=True,
+    )
+    last_name = forms.CharField(
+        min_length=3,
+        required=True,
+    )
+    email = forms.EmailField(
+        required=True,
+    )
+
+    class Meta:
+        model = User
+        fields = ("first_name", "last_name", "email", "is_active", "username",)
+
+    # validation if email already exists from created user.
+    def clean_email(self):
+        email = self.cleaned_data.get("email")
+        if User.objects.filter(email=email).exists():
+            msg = "This email already exists!"
+            self.add_error(
+                "email",
+                ValidationError(msg, code="invalid")
+            )
+        return email
