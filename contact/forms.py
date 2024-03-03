@@ -1,6 +1,7 @@
 from django import forms
 from contact.models import Contact
 from django.core.exceptions import ValidationError
+from django.contrib.auth.forms import UserCreationForm
 
 class ContactForm(forms.ModelForm):
     first_name = forms.CharField(
@@ -35,3 +36,7 @@ class ContactForm(forms.ModelForm):
         if first_name == last_name:
             msg = "The First Name and Last Name could not be the same!!!"
             self.add_error("last_name", ValidationError(msg))
+
+
+class RegisterForm(UserCreationForm):
+    ...
