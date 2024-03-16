@@ -62,6 +62,6 @@ def user_update(request):
     }
     return render(
         request, 
-        "contact/register.html",
+        "contact/user_update.html",
         context,
     )
